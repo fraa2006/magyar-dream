@@ -74,17 +74,14 @@ export const googleAuth = async (req, res, next) => {
     const payload = ticket.getPayload();
     const { sub: googleId, email, name, given_name, family_name } = payload;
 
-    // Find existing user by googleId or email
     let user = await User.findOne({ $or: [{ googleId }, { email }] });
 
     if (user) {
-      // Link googleId if logged in via email before
       if (!user.googleId) {
         user.googleId = googleId;
         await user.save();
       }
     } else {
-      // Create new user
       const username = email.split('@')[0].replace(/[^a-zA-Z0-9]/g, '') + Math.floor(Math.random() * 100);
       user = await User.create({
         googleId,

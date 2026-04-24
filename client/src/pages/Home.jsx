@@ -61,7 +61,6 @@ export default function Home() {
 
   return (
     <div className="animate-fade-in">
-      {/* ── HERO ── */}
       <div className="relative overflow-hidden bg-white border-b border-brand-border">
         <div className="absolute inset-0 flex pointer-events-none select-none">
           <div className="flex-1 bg-hungarian-red opacity-[0.04]" />
@@ -99,7 +98,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── STATS BAR ── */}
       <div className="border-b border-brand-border bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-border">
@@ -113,9 +111,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── MAIN CONTENT ── */}
       <div className="max-w-7xl mx-auto px-4 py-10">
-        {/* Leagues strip */}
         <div className="grid grid-cols-3 gap-3 mb-10">
           {LEAGUES.map(({ slug, name, color, descs: d }) => (
             <Link key={slug} to={`/classifica/${slug}`} className="group card-hover p-4 text-center">
@@ -132,7 +128,6 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* LEFT */}
           <div className="lg:col-span-2 space-y-8">
             <section>
               <SectionHeader title={t.home.recentResults} link="/risultati" linkLabel={t.home.seeAll} />
@@ -153,7 +148,6 @@ export default function Home() {
             </section>
           </div>
 
-          {/* RIGHT */}
           <div className="space-y-8">
             <section>
               <SectionHeader title={t.home.standingsNb1} link="/classifica" linkLabel={t.home.full} />

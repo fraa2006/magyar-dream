@@ -1,6 +1,5 @@
 const translations = {
   it: {
-    // Navbar
     nav: {
       home: 'Home',
       standings: 'Classifica',
@@ -15,7 +14,6 @@ const translations = {
       register: 'Registrati',
       dashboard: 'Il mio profilo',
     },
-    // Home
     home: {
       badge: 'Calcio Ungherese',
       subtitle: 'La piattaforma di riferimento per il calcio ungherese. Dal NB I fino ai campionati giovanili e dilettantistici.',
@@ -38,7 +36,6 @@ const translations = {
       noUpcoming: 'Nessuna partita in programma',
       leagues: 'Campionati',
     },
-    // Standings
     standings: {
       title: 'Classifica',
       season: 'Stagione',
@@ -58,20 +55,17 @@ const translations = {
       relegation: 'Zona retrocessione',
       legend: 'G = Giocate · V = Vinte · P = Pareggiate · S = Sconfitte · DR = Diff. Reti · Pt = Punti',
     },
-    // Results
     results: {
       title: 'Risultati',
       allLeagues: 'Tutte le leghe',
       matchday: 'Giornata',
       noResults: 'Nessun risultato trovato',
     },
-    // Calendar
     calendar: {
       title: 'Calendario',
       allLeagues: 'Tutte le leghe',
       noMatches: 'Nessuna partita in programma nei prossimi 30 giorni',
     },
-    // Teams
     teams: {
       title: 'Squadre',
       search: 'Cerca squadra o città...',
@@ -79,7 +73,6 @@ const translations = {
       noTeams: 'Nessuna squadra trovata',
       founded: 'Est.',
     },
-    // Team detail
     team: {
       squad: 'Rosa',
       recentMatches: 'Ultime partite',
@@ -87,7 +80,6 @@ const translations = {
       noMatches: 'Nessuna partita recente',
       capacity: 'posti',
     },
-    // Match
     match: {
       scheduled: 'Programmata',
       live: 'In corso',
@@ -99,7 +91,6 @@ const translations = {
       noEvents: 'Nessun evento registrato',
       notStarted: 'La partita non è ancora iniziata',
     },
-    // Player
     player: {
       nationality: 'Nazionalità',
       age: 'Età',
@@ -116,20 +107,17 @@ const translations = {
         matches: 'Presenze',
       },
     },
-    // Scorers
     scorers: {
       title: 'Marcatori',
       noGoals: 'Nessun gol registrato per questa stagione',
       goals: 'gol',
     },
-    // Footer
     footer: {
       desc: 'La piattaforma di riferimento per il calcio ungherese. Risultati, classifiche e squadre dal NB I ai campionati dilettantistici.',
       navigation: 'Navigazione',
       leagues: 'Campionati',
       copyright: 'Progetto universitario dedicato al calcio ungherese.',
     },
-    // Scout / Premium
     scout: {
       navLink: 'Talent Scout',
       heroTitle: 'Diventa il prossimo grande talento',
@@ -190,7 +178,6 @@ const translations = {
       haveAccount: 'Hai già un account?',
       loginLink: 'Accedi',
     },
-    // Common
     common: {
       loading: 'Caricamento...',
       error: 'Si è verificato un errore.',

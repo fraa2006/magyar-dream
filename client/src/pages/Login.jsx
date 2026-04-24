@@ -37,17 +37,14 @@ export default function Login() {
         </div>
 
         <div className="card p-8 space-y-5">
-          {/* Google */}
           <GoogleAuthButton onError={setError} />
 
-          {/* Divider */}
           <div className="flex items-center gap-3">
             <div className="flex-1 h-px bg-brand-border" />
             <span className="text-xs text-brand-muted">oppure</span>
             <div className="flex-1 h-px bg-brand-border" />
           </div>
 
-          {/* Email form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>

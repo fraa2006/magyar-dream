@@ -13,7 +13,6 @@ await connectDB();
 
 console.log('🌱 Seeding database...\n');
 
-// Clear all
 await Promise.all([
   User.deleteMany({}),
   League.deleteMany({}),
@@ -23,7 +22,6 @@ await Promise.all([
   Match.deleteMany({}),
 ]);
 
-// ─── Admin ───────────────────────────────────────────────
 await User.create({
   username: 'admin',
   email: 'admin@magyardream.hu',
@@ -32,7 +30,6 @@ await User.create({
 });
 console.log('✅ Admin: admin@magyardream.hu / admin123');
 
-// ─── Leagues ─────────────────────────────────────────────
 const leaguesData = [
   { name: 'Nemzeti Bajnokság I', shortName: 'NB I',  slug: 'nb1',        tier: 1 },
   { name: 'Nemzeti Bajnokság II', shortName: 'NB II', slug: 'nb2',       tier: 2 },
@@ -45,7 +42,6 @@ const leagues = await League.insertMany(leaguesData);
 const nb1 = leagues[0];
 console.log(`✅ ${leagues.length} leghe create`);
 
-// ─── Season ──────────────────────────────────────────────
 const season = await Season.create({
   name: '2024-25',
   league: nb1._id,
@@ -55,7 +51,6 @@ const season = await Season.create({
 });
 console.log('✅ Stagione 2024-25 creata');
 
-// ─── Teams ───────────────────────────────────────────────
 const teamsData = [
   { name: 'Ferencvárosi TC',    shortName: 'FTC',  city: 'Budapest',         founded: 1899, stadium: 'Groupama Aréna',         capacity: 22000, primaryColor: '#007A4D', secondaryColor: '#FFFFFF' },
   { name: 'Paksi FC',           shortName: 'PAK',  city: 'Paks',             founded: 1952, stadium: 'Fehérvári úti Stadion',   capacity: 5500,  primaryColor: '#3D8B37', secondaryColor: '#FFD700' },
@@ -73,12 +68,9 @@ const teamsData = [
 const teams = await Team.insertMany(teamsData.map(t => ({ ...t, leagues: [nb1._id], active: true })));
 console.log(`✅ ${teams.length} squadre NB I create`);
 
-// Helper: index teams by shortName
 const T = Object.fromEntries(teams.map(t => [t.shortName, t]));
 
-// ─── Players ─────────────────────────────────────────────
 const playersData = [
-  // FTC
   { firstName: 'Dénes', lastName: 'Dibusz',      position: 'GK', number: 1,  nationality: 'HU', team: T.FTC._id },
   { firstName: 'Adnan', lastName: 'Kovačević',   position: 'DF', number: 4,  nationality: 'BA', team: T.FTC._id },
   { firstName: 'Samy', lastName: 'Mmaee',        position: 'DF', number: 5,  nationality: 'BE', team: T.FTC._id },
@@ -88,7 +80,6 @@ const playersData = [
   { firstName: 'Tokmac', lastName: 'Nguen',       position: 'FW', number: 11, nationality: 'NO', team: T.FTC._id },
   { firstName: 'Ryan', lastName: 'Mmaee',         position: 'FW', number: 7,  nationality: 'BE', team: T.FTC._id },
 
-  // PAK
   { firstName: 'Balázs', lastName: 'Végh',        position: 'GK', number: 1,  nationality: 'HU', team: T.PAK._id },
   { firstName: 'Bence', lastName: 'Könyves',      position: 'DF', number: 3,  nationality: 'HU', team: T.PAK._id },
   { firstName: 'Dávid', lastName: 'Kovács',       position: 'MF', number: 6,  nationality: 'HU', team: T.PAK._id },
@@ -96,7 +87,6 @@ const playersData = [
   { firstName: 'Ivan', lastName: 'Petrjak',       position: 'FW', number: 9,  nationality: 'UA', team: T.PAK._id },
   { firstName: 'Dávid', lastName: 'Windecker',    position: 'FW', number: 11, nationality: 'HU', team: T.PAK._id },
 
-  // FEH
   { firstName: 'Ádám', lastName: 'Kovácsik',     position: 'GK', number: 1,  nationality: 'HU', team: T.FEH._id },
   { firstName: 'Paulo', lastName: 'Vinicius',    position: 'DF', number: 5,  nationality: 'BR', team: T.FEH._id },
   { firstName: 'Szabolcs', lastName: 'Schön',    position: 'MF', number: 10, nationality: 'HU', team: T.FEH._id },
@@ -104,7 +94,6 @@ const playersData = [
   { firstName: 'Loïc', lastName: 'Nego',         position: 'DF', number: 2,  nationality: 'FR', team: T.FEH._id },
   { firstName: 'Bojan', lastName: 'Nikolov',     position: 'FW', number: 9,  nationality: 'MK', team: T.FEH._id },
 
-  // DVSC
   { firstName: 'Gergő', lastName: 'Bogdán',      position: 'GK', number: 1,  nationality: 'HU', team: T.DVSC._id },
   { firstName: 'Dzsudzsák', lastName: 'Balázs',  position: 'MF', number: 7,  nationality: 'HU', team: T.DVSC._id },
   { firstName: 'Artem', lastName: 'Favorov',     position: 'DF', number: 4,  nationality: 'UA', team: T.DVSC._id },
@@ -112,52 +101,44 @@ const playersData = [
   { firstName: 'Gábor', lastName: 'Tamás',       position: 'DF', number: 5,  nationality: 'HU', team: T.DVSC._id },
   { firstName: 'Rodolph', lastName: 'Austin',    position: 'MF', number: 8,  nationality: 'JM', team: T.DVSC._id },
 
-  // MTK
   { firstName: 'Branko', lastName: 'Panic',      position: 'GK', number: 1,  nationality: 'RS', team: T.MTK._id },
   { firstName: 'Bence', lastName: 'Merő',        position: 'DF', number: 3,  nationality: 'HU', team: T.MTK._id },
   { firstName: 'Ákos', lastName: 'Kecskés',      position: 'MF', number: 6,  nationality: 'HU', team: T.MTK._id },
   { firstName: 'László', lastName: 'Lencse',     position: 'FW', number: 9,  nationality: 'HU', team: T.MTK._id },
   { firstName: 'Zsombor', lastName: 'Berecz',    position: 'MF', number: 8,  nationality: 'HU', team: T.MTK._id },
 
-  // PAFC
   { firstName: 'Péter', lastName: 'Szappanos',   position: 'GK', number: 1,  nationality: 'HU', team: T.PAFC._id },
   { firstName: 'Roland', lastName: 'Varga',      position: 'DF', number: 4,  nationality: 'HU', team: T.PAFC._id },
   { firstName: 'Dávid', lastName: 'Cseh',        position: 'MF', number: 8,  nationality: 'HU', team: T.PAFC._id },
   { firstName: 'Mirko', lastName: 'Ivanić',      position: 'MF', number: 10, nationality: 'RS', team: T.PAFC._id },
   { firstName: 'Ádám', lastName: 'Gyurcsó',      position: 'FW', number: 9,  nationality: 'HU', team: T.PAFC._id },
 
-  // ZTE
   { firstName: 'Ádám', lastName: 'Rácz',         position: 'GK', number: 1,  nationality: 'HU', team: T.ZTE._id },
   { firstName: 'Dario', lastName: 'Benedičič',   position: 'DF', number: 4,  nationality: 'SI', team: T.ZTE._id },
   { firstName: 'Stjepan', lastName: 'Vulić',     position: 'MF', number: 6,  nationality: 'HR', team: T.ZTE._id },
   { firstName: 'Dénes', lastName: 'Csernik',     position: 'FW', number: 9,  nationality: 'HU', team: T.ZTE._id },
 
-  // ETO
   { firstName: 'Ádám', lastName: 'Waltner',      position: 'GK', number: 1,  nationality: 'HU', team: T.ETO._id },
   { firstName: 'Tamás', lastName: 'Kecskés',     position: 'DF', number: 5,  nationality: 'HU', team: T.ETO._id },
   { firstName: 'Richárd', lastName: 'Guzmics',   position: 'DF', number: 6,  nationality: 'HU', team: T.ETO._id },
   { firstName: 'Lovro', lastName: 'Cvek',        position: 'MF', number: 8,  nationality: 'HR', team: T.ETO._id },
   { firstName: 'Krisztofer', lastName: 'Horváth',position: 'FW', number: 9,  nationality: 'HU', team: T.ETO._id },
 
-  // KTE
   { firstName: 'Bence', lastName: 'Horváth',    position: 'GK', number: 1,  nationality: 'HU', team: T.KTE._id },
   { firstName: 'Zsolt', lastName: 'Cságola',    position: 'DF', number: 3,  nationality: 'HU', team: T.KTE._id },
   { firstName: 'Miloš', lastName: 'Adamović',   position: 'MF', number: 8,  nationality: 'RS', team: T.KTE._id },
   { firstName: 'Balázs', lastName: 'Tóth',      position: 'FW', number: 9,  nationality: 'HU', team: T.KTE._id },
 
-  // UJP
   { firstName: 'Lajos', lastName: 'Hegedűs',    position: 'GK', number: 1,  nationality: 'HU', team: T.UJP._id },
   { firstName: 'David', lastName: 'Babunski',   position: 'MF', number: 10, nationality: 'MK', team: T.UJP._id },
   { firstName: 'Tibor', lastName: 'Heffler',    position: 'MF', number: 6,  nationality: 'HU', team: T.UJP._id },
   { firstName: 'Donát', lastName: 'Fülöp',      position: 'FW', number: 9,  nationality: 'HU', team: T.UJP._id },
 
-  // DVTK
   { firstName: 'Kristián', lastName: 'Tóth',    position: 'GK', number: 1,  nationality: 'HU', team: T.DVTK._id },
   { firstName: 'Bojan', lastName: 'Sabolović',  position: 'DF', number: 4,  nationality: 'RS', team: T.DVTK._id },
   { firstName: 'Vajda', lastName: 'Bouadla',    position: 'MF', number: 7,  nationality: 'DZ', team: T.DVTK._id },
   { firstName: 'Kristóf', lastName: 'Dankó',    position: 'FW', number: 9,  nationality: 'HU', team: T.DVTK._id },
 
-  // BHF
   { firstName: 'Dominik', lastName: 'Greif',    position: 'GK', number: 1,  nationality: 'SK', team: T.BHF._id },
   { firstName: 'Ádám', lastName: 'Pálvölgyi',   position: 'DF', number: 3,  nationality: 'HU', team: T.BHF._id },
   { firstName: 'Máté', lastName: 'Pátkai',      position: 'MF', number: 8,  nationality: 'HU', team: T.BHF._id },
@@ -167,19 +148,12 @@ const playersData = [
 const players = await Player.insertMany(playersData.map(p => ({ ...p, active: true })));
 console.log(`✅ ${players.length} giocatori creati`);
 
-// Helper: get player _id by lastName + team shortName
 const P = {};
 for (const p of players) {
   const teamShort = Object.entries(T).find(([, t]) => t._id.equals(p.team))?.[0];
   if (teamShort) P[`${teamShort}_${p.lastName}`] = p._id;
 }
 
-// ─── Matches (20 matchdays) ───────────────────────────────
-// NB I 2024-25: 12 teams, round-robin (each team plays 11 opponents twice = 22 matchdays)
-// We generate 20 matchdays. Each matchday has 6 matches (12 teams / 2).
-
-// Fixture template: pairs (home index, away index) for each matchday
-// Using a round-robin algorithm
 function generateFixtures(n) {
   const teams = Array.from({ length: n }, (_, i) => i);
   const rounds = [];
@@ -189,7 +163,6 @@ function generateFixtures(n) {
       pairs.push([teams[i], teams[n - 1 - i]]);
     }
     rounds.push(pairs);
-    // Rotate all except first
     teams.splice(1, 0, teams.pop());
   }
   return rounds;
@@ -197,7 +170,6 @@ function generateFixtures(n) {
 
 const fixtures = generateFixtures(12);
 
-// Team strengths (higher = stronger) to generate realistic results
 const strength = {
   FTC: 90, PAK: 78, FEH: 75, DVSC: 72, MTK: 68,
   PAFC: 65, ZTE: 60, ETO: 58, KTE: 55, UJP: 52,
@@ -208,7 +180,7 @@ const teamShortNames = ['FTC', 'PAK', 'FEH', 'DVSC', 'MTK', 'PAFC', 'ZTE', 'ETO'
 function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
 
 function generateScore(homeStr, awayStr) {
-  const diff = (homeStr - awayStr + 10) / 100; // -0.8 to +1
+  const diff = (homeStr - awayStr + 10) / 100;
   const homeExpected = Math.max(0.3, 1.2 + diff * 1.5);
   const awayExpected = Math.max(0.3, 1.0 - diff * 1.5);
   const h = Math.min(6, Math.round(homeExpected * (0.5 + Math.random())));
@@ -217,7 +189,6 @@ function generateScore(homeStr, awayStr) {
 }
 
 function pickGoalPlayers(teamShort, count) {
-  // Get forward/mid players for this team
   const fwPlayers = players.filter(p => p.team.equals(T[teamShort]._id) && ['FW', 'MF'].includes(p.position));
   const events = [];
   for (let i = 0; i < count; i++) {
@@ -282,7 +253,6 @@ for (let md = 0; md < 20; md++) {
   }
 }
 
-// Add 3 upcoming matches (matchday 21)
 const nextMatchDate = new Date(startDate);
 nextMatchDate.setDate(startDate.getDate() + 20 * 7);
 matchDocs.push(

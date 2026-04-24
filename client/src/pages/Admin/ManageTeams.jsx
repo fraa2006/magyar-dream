@@ -234,7 +234,6 @@ export default function ManageTeams() {
 
         </div>
 
-        {/* Campionati di appartenenza */}
         <div>
           <label className="block text-sm text-gray-400 mb-2">Campionati</label>
           <div className="flex flex-wrap gap-2">

@@ -3,7 +3,6 @@ import Season from '../models/Season.js';
 import League from '../models/League.js';
 import Player from '../models/Player.js';
 
-// Calcola la classifica partendo dai risultati delle partite
 export const getStandings = async (req, res, next) => {
   try {
     const { leagueSlug, seasonName } = req.params;
@@ -13,7 +12,6 @@ export const getStandings = async (req, res, next) => {
       return res.status(404).json({ message: 'Lega non trovata' });
     }
 
-    // Cerco la stagione: quella richiesta o quella attiva
     const seasonQuery = { league: league._id };
     if (seasonName) {
       seasonQuery.name = seasonName;
@@ -32,7 +30,6 @@ export const getStandings = async (req, res, next) => {
       status: 'finished',
     }).populate('homeTeam awayTeam', 'name shortName logo primaryColor');
 
-    // Costruisco la classifica riga per riga
     const table = {};
 
     function initTeam(team) {

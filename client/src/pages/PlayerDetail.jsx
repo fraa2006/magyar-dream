@@ -39,7 +39,6 @@ export default function PlayerDetail() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
-      {/* Breadcrumb */}
       {player.team && (
         <div className="flex items-center gap-2 text-sm text-brand-muted mb-4">
           <Link to="/squadre" className="hover:text-gray-900">{t.nav.teams}</Link>
@@ -50,7 +49,6 @@ export default function PlayerDetail() {
         </div>
       )}
 
-      {/* Header card */}
       <div className="card p-6 mb-6">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <div
@@ -86,7 +84,6 @@ export default function PlayerDetail() {
         </div>
       </div>
 
-      {/* Info grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
         {[
           { label: t.player.nationality, value: player.nationality || '—' },
@@ -101,7 +98,6 @@ export default function PlayerDetail() {
         ))}
       </div>
 
-      {/* Season stats */}
       <div className="mb-2">
         <h2 className="text-lg font-bold text-gray-900 mb-3">Statistiche stagione</h2>
         {statsLoading ? (

@@ -30,7 +30,6 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-14">
 
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
             <div className="flex h-5 w-1 rounded-full overflow-hidden flex-col">
               <div className="flex-1 bg-hungarian-red" />
@@ -42,7 +41,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-0.5">
             {LINKS.map(({ to, label }) => (
               <NavLink
@@ -62,10 +60,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Right side */}
           <div className="hidden lg:flex items-center gap-2">
 
-            {/* Language switcher */}
             <div className="relative">
               <button
                 onClick={() => setLangOpen(o => !o)}
@@ -102,10 +98,8 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Auth */}
             {user ? (
               isAdmin ? (
-                /* Admin user */
                 <>
                   <Link to="/admin" className="text-sm text-brand-gold hover:text-amber-900 transition-colors px-3 py-1.5 rounded-md hover:bg-gray-100 font-medium">
                     ⚙ {t.nav.admin}
@@ -115,7 +109,6 @@ export default function Navbar() {
                   </button>
                 </>
               ) : (
-                /* Regular user dropdown */
                 <div className="relative">
                   <button
                     onClick={() => setUserOpen(o => !o)}
@@ -166,7 +159,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile: lang quick + hamburger */}
           <div className="lg:hidden flex items-center gap-2">
             <div className="flex gap-1">
               {LANGUAGES.map(({ code, flag }) => (
@@ -195,7 +187,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {open && (
           <div className="lg:hidden pb-3 pt-1 space-y-0.5 border-t border-brand-border">
             {LINKS.map(({ to, label }) => (

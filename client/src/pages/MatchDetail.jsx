@@ -62,7 +62,6 @@ export default function MatchDetail() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
 
-      {/* Breadcrumb */}
       <div className="text-sm text-brand-muted mb-6">
         <Link to="/" className="hover:text-gray-900">Home</Link>
         {' / '}
@@ -71,14 +70,12 @@ export default function MatchDetail() {
         <span className="text-gray-300">{match.homeTeam?.shortName} vs {match.awayTeam?.shortName}</span>
       </div>
 
-      {/* Info lega e giornata */}
       <div className="text-center mb-2">
         <span className="text-xs text-brand-muted uppercase tracking-wider">
           {match.league?.name} · {t.match.matchday} {match.matchday} · {t.standings.season} {match.season?.name}
         </span>
       </div>
 
-      {/* Header principale con squadre e punteggio */}
       <div className="card p-6 mb-6">
         <div className="grid grid-cols-3 items-center gap-4">
           <TeamHeader team={match.homeTeam} />
@@ -111,7 +108,6 @@ export default function MatchDetail() {
           <TeamHeader team={match.awayTeam} />
         </div>
 
-        {/* Info stadio e data */}
         {(match.venue || match.date) && (
           <div className="border-t border-brand-border mt-5 pt-4 flex flex-wrap justify-center gap-6 text-sm text-brand-muted">
             {match.venue && (
@@ -124,7 +120,6 @@ export default function MatchDetail() {
         )}
       </div>
 
-      {/* Tabellino eventi */}
       {match.events && match.events.length > 0 ? (
         <div className="card p-5 mb-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">{t.match.events}</h2>
@@ -164,7 +159,6 @@ export default function MatchDetail() {
         </div>
       ) : null}
 
-      {/* Link alle squadre */}
       <div className="grid grid-cols-2 gap-4">
         <Link
           to={`/squadre/${match.homeTeam?._id}`}

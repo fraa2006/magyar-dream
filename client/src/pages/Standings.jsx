@@ -72,7 +72,6 @@ export default function Standings() {
         <p className="text-brand-muted text-sm">Dati ufficiali · Stagione 2024/25</p>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-2 mb-6 flex-wrap">
         {LEAGUES.map(({ key, name, desc }) => (
           <button
@@ -93,7 +92,6 @@ export default function Standings() {
         ))}
       </div>
 
-      {/* Table */}
       <div className="card overflow-hidden">
         {loading && <Skeleton />}
 

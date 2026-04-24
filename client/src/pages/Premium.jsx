@@ -52,7 +52,6 @@ export default function Premium() {
         <p className="text-brand-muted text-lg">{t.premium.subtitle}</p>
       </div>
 
-      {/* Already premium */}
       {user?.isPremium && (
         <div className="card p-8 text-center mb-6">
           <div className="text-4xl mb-3">🏆</div>
@@ -68,7 +67,6 @@ export default function Premium() {
         </div>
       )}
 
-      {/* Pricing card */}
       {!user?.isPremium && (
         <div className="card border-2 border-brand-secondary p-8 relative overflow-hidden">
           <div className="absolute top-4 right-4 bg-brand-secondary text-white text-xs font-bold px-3 py-1 rounded-full">
@@ -110,7 +108,6 @@ export default function Premium() {
         </div>
       )}
 
-      {/* Confirmation modal */}
       {modal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 text-center">

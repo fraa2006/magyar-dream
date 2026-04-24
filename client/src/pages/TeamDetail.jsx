@@ -44,7 +44,6 @@ export default function TeamDetail() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      {/* Header */}
       <div className="card p-6 mb-8">
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <div
@@ -78,7 +77,6 @@ export default function TeamDetail() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Squad */}
         <div className="lg:col-span-2">
           <h2 className="text-xl font-bold text-gray-900 mb-4">{t.team.squad}</h2>
           {Object.keys(playersByPosition).length === 0 ? (
@@ -100,12 +98,10 @@ export default function TeamDetail() {
                           to={`/giocatori/${p._id}`}
                           className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                         >
-                          {/* Number */}
                           <span className="w-7 text-center text-brand-muted text-sm font-bold shrink-0">
                             {p.number || '—'}
                           </span>
 
-                          {/* Avatar */}
                           <div
                             className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0"
                             style={{ backgroundColor: team.primaryColor || '#477050' }}
@@ -115,13 +111,11 @@ export default function TeamDetail() {
                               : p.firstName?.[0]}
                           </div>
 
-                          {/* Name + nationality */}
                           <div className="flex-1 min-w-0">
                             <p className="font-semibold text-gray-900 truncate">{p.firstName} {p.lastName}</p>
                             <p className="text-xs text-brand-muted">{p.nationality}</p>
                           </div>
 
-                          {/* Stats pills */}
                           <div className="flex items-center gap-1 shrink-0">
                             <StatPill value={st.goals} icon="⚽" title={S.goals} colorClass="bg-green-100 text-green-700" />
                             <StatPill value={st.assists} icon="🅰" title={S.assists} colorClass="bg-blue-100 text-blue-700" />
@@ -142,7 +136,6 @@ export default function TeamDetail() {
           )}
         </div>
 
-        {/* Recent matches */}
         <div>
           <h2 className="text-xl font-bold text-gray-900 mb-4">{t.team.recentMatches}</h2>
           {recentMatches?.length === 0 ? (

@@ -87,7 +87,6 @@ export default function ManageMatchEvents() {
         <span className="text-white font-semibold">Gestione eventi</span>
       </div>
 
-      {/* Match header */}
       <div className="card p-5 mb-6">
         <p className="text-xs text-brand-muted text-center mb-3">{match.league?.name} · Giornata {match.matchday} · {match.season?.name}</p>
         <div className="grid grid-cols-3 items-center gap-4 text-center">
@@ -114,7 +113,6 @@ export default function ManageMatchEvents() {
         </div>
       </div>
 
-      {/* Add event form */}
       <div className="card p-5 mb-6">
         <h2 className="text-lg font-extrabold mb-4">
           <span style={{ color: '#477050' }}>Aggiungi</span> <span style={{ color: '#CE2939' }}>evento</span>
@@ -184,7 +182,6 @@ export default function ManageMatchEvents() {
         </form>
       </div>
 
-      {/* Events list */}
       <div className="card">
         <div className="px-5 py-4 border-b border-brand-border">
           <h2 className="text-lg font-extrabold">

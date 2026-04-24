@@ -71,7 +71,6 @@ export default function LiveStandings() {
         <p className="text-brand-muted text-sm">Dati ufficiali aggiornati in tempo reale · Stagione 2024/25</p>
       </div>
 
-      {/* Tabs */}
       <div className="flex gap-2 mb-6 flex-wrap">
         {LEAGUES.map(({ key, name, desc }) => (
           <button
@@ -92,7 +91,6 @@ export default function LiveStandings() {
         ))}
       </div>
 
-      {/* Table */}
       <div className="card overflow-hidden">
         {loading && <div className="p-6"><TableSkeleton /></div>}
 

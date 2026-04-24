@@ -6,7 +6,6 @@ export function useApi(url, params = {}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Serializzo i params per usarli come dipendenza dell'effect
   const paramsString = JSON.stringify(params);
 
   useEffect(() => {

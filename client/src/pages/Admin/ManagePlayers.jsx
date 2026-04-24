@@ -220,7 +220,6 @@ export default function ManagePlayers() {
         </div>
       </form>
 
-      {/* Lista giocatori con filtro per squadra */}
       <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
         <h2 className="text-xl font-extrabold">
           <span style={{ color: '#477050' }}>Giocatori</span> <span style={{ color: '#CE2939' }}>nel sistema</span>

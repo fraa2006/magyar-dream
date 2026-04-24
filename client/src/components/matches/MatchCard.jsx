@@ -30,7 +30,6 @@ export default function MatchCard({ match, showLeague = true }) {
       to={`/partite/${match._id}`}
       className="card-hover group block"
     >
-      {/* Colored top accent using team colors */}
       <div
         className="h-0.5 w-full opacity-70"
         style={{ background: `linear-gradient(90deg, ${homeTeam?.primaryColor || '#CE2939'}, ${awayTeam?.primaryColor || '#477050'})` }}
@@ -53,7 +52,6 @@ export default function MatchCard({ match, showLeague = true }) {
         )}
 
         <div className="flex items-center gap-3">
-          {/* Home team */}
           <div className="flex items-center gap-2.5 flex-1 min-w-0">
             <TeamLogo logo={homeTeam?.logo} name={homeTeam?.shortName} color={homeTeam?.primaryColor} />
             <div className="min-w-0">
@@ -64,7 +62,6 @@ export default function MatchCard({ match, showLeague = true }) {
             </div>
           </div>
 
-          {/* Score / Time */}
           <div className="flex flex-col items-center shrink-0 min-w-[80px]">
             {isFinished || isLive ? (
               <div className="flex items-center gap-1">
@@ -88,7 +85,6 @@ export default function MatchCard({ match, showLeague = true }) {
             )}
           </div>
 
-          {/* Away team */}
           <div className="flex items-center gap-2.5 flex-1 min-w-0 justify-end">
             <div className="min-w-0 text-right">
               <p className={`font-semibold truncate leading-tight ${awayWon ? 'text-gray-900' : isFinished ? 'text-gray-400' : 'text-gray-900'}`}>

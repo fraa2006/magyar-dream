@@ -33,7 +33,6 @@ export default function TopScorers() {
         <p className="text-brand-muted">{data?.league?.name} · {data?.season?.name}</p>
       </div>
 
-      {/* League tabs */}
       <div className="flex flex-wrap gap-2 mb-6">
         {LEAGUES.map(({ slug, name }) => (
           <Link

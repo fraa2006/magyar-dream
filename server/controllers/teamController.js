@@ -28,7 +28,6 @@ export const getTeam = async (req, res, next) => {
       }).sort('-date').limit(5).populate('homeTeam awayTeam league', 'name shortName slug logo'),
     ]);
 
-    // Build per-player stats from match events
     const statsMap = {};
     for (const match of allMatches) {
       for (const ev of match.events) {

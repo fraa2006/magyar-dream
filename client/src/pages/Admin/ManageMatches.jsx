@@ -140,7 +140,6 @@ export default function ManageMatches() {
         </div>
       </form>
 
-      {/* Match list */}
       <h2 className="text-xl font-extrabold mb-4">
         <span style={{ color: '#477050' }}>Partite</span> <span style={{ color: '#CE2939' }}>registrate</span>
       </h2>

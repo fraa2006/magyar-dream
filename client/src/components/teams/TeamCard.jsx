@@ -6,14 +6,12 @@ export default function TeamCard({ team }) {
       to={`/squadre/${team._id}`}
       className="card-hover group relative overflow-hidden"
     >
-      {/* Color bar top */}
       <div
         className="h-1 w-full"
         style={{ background: `linear-gradient(90deg, ${team.primaryColor || '#CE2939'}, ${team.secondaryColor || '#333'})` }}
       />
 
       <div className="p-5 text-center">
-        {/* Logo / initials */}
         <div
           className="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white font-extrabold text-lg shadow-lg transition-transform duration-300 group-hover:scale-110"
           style={{ backgroundColor: team.primaryColor || '#333' }}

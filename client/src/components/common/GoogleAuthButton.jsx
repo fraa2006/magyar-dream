@@ -14,7 +14,6 @@ export default function GoogleAuthButton({ onError }) {
       });
       localStorage.setItem('md_token', data.token);
       api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      // Use the setAuth trick: inject user directly
       const dest = data.user.role === 'admin' || data.user.role === 'superadmin' ? '/admin' : '/dashboard';
       window.location.href = dest;
     } catch (err) {

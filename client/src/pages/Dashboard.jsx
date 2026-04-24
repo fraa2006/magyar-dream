@@ -36,7 +36,6 @@ export default function Dashboard() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* Header */}
       <div className="card p-6 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="w-14 h-14 rounded-full bg-brand-secondary/10 flex items-center justify-center text-2xl shrink-0">
           ⚽
@@ -65,7 +64,6 @@ export default function Dashboard() {
         </Link>
       </div>
 
-      {/* Premium CTA — hidden for admins */}
       {!canUpload && (
         <div className="bg-gradient-to-r from-brand-secondary/10 to-brand-primary/10 border border-brand-secondary/20 rounded-xl p-5 mb-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="flex-1">
@@ -78,7 +76,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Videos section */}
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-gray-900">{t.dashboard.myVideos}</h2>
         {canUpload && (

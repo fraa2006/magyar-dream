@@ -19,7 +19,6 @@ export default function Scout() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      {/* Hero */}
       <div className="relative rounded-2xl overflow-hidden mb-10 bg-gradient-to-br from-brand-secondary to-green-800 text-white px-8 py-12 text-center">
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC40Ij48cGF0aCBkPSJNMzYgMzRjMC0yIDItNCAyLTZzLTItNC0yLTYtMiA0LTIgNiAyIDQgMiA2eiIvPjwvZz48L2c+PC9zdmc+')]" />
         <div className="relative z-10">
@@ -54,7 +53,6 @@ export default function Scout() {
         </div>
       </div>
 
-      {/* Stats row */}
       <div className="grid grid-cols-3 gap-4 mb-8">
         {[
           { label: 'Video caricati', value: videos?.length ?? '—' },
@@ -68,7 +66,6 @@ export default function Scout() {
         ))}
       </div>
 
-      {/* Filter */}
       <div className="flex flex-wrap gap-2 mb-6">
         <button
           onClick={() => setPosition('')}
@@ -91,7 +88,6 @@ export default function Scout() {
         ))}
       </div>
 
-      {/* Videos grid */}
       {loading && <LoadingSpinner />}
       {error && <ErrorMessage message={error} />}
       {!loading && !error && (

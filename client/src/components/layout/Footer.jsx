@@ -18,7 +18,6 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-3">
               <div className="flex flex-col h-5 w-1 rounded overflow-hidden">
@@ -32,7 +31,6 @@ export default function Footer() {
             </div>
             <p className="text-sm text-brand-muted mb-4">{t.footer.desc}</p>
 
-            {/* Language switcher in footer */}
             <div className="flex gap-2">
               {LANGUAGES.map(({ code, flag, label }) => (
                 <button
@@ -52,7 +50,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">{t.footer.navigation}</h3>
             <ul className="space-y-2 text-sm text-brand-muted">
@@ -64,7 +61,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Leagues */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">{t.footer.leagues}</h3>
             <ul className="space-y-2 text-sm text-brand-muted">
