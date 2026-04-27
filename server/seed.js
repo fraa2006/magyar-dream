@@ -7,6 +7,7 @@ import Season from './models/Season.js';
 import Team from './models/Team.js';
 import Player from './models/Player.js';
 import Match from './models/Match.js';
+import Standings from './models/Standings.js';
 
 dotenv.config();
 await connectDB();
@@ -20,6 +21,7 @@ await Promise.all([
   Team.deleteMany({}),
   Player.deleteMany({}),
   Match.deleteMany({}),
+  Standings.deleteMany({}),
 ]);
 
 await User.create({
@@ -33,12 +35,12 @@ console.log('✅ Admin: admin@magyardream.hu / admin123');
 const leaguesData = [
   { name: 'Nemzeti Bajnokság I',   shortName: 'NB I',  slug: 'nb1',         tier: 1 },
   { name: 'Nemzeti Bajnokság II',  shortName: 'NB II', slug: 'nb2',         tier: 2 },
-  { name: 'Nemzeti Bajnokság III', shortName: 'NB III',slug: 'nb3',         tier: 3 },
   { name: 'Magyar Kupa',           shortName: 'MK',    slug: 'magyar-kupa', tier: 1 },
   { name: 'U19 Nemzeti Bajnokság', shortName: 'U19',   slug: 'u19',         tier: 4 },
 ];
 const leagues = await League.insertMany(leaguesData);
 const nb1 = leagues[0];
+const nb2 = leagues[1];
 console.log(`✅ ${leagues.length} leghe create`);
 
 const season = await Season.create({
@@ -345,6 +347,66 @@ const matchDocs = MATCHES_RAW.map(([matchday, dateStr, homeShort, homeScore, awa
 
 await Match.insertMany(matchDocs);
 console.log(`✅ ${matchDocs.length} partite NB I create (giornate 1-31)`);
+
+const standingsData = [
+  {
+    leagueSlug: 'nb1', leagueName: 'Nemzeti Bajnokság I', leagueShort: 'NB I', season: '2024/25',
+    standings: [
+      { rank: 1,  team: { id: 1001, name: 'ETO FC Győr',            logo: '' }, all: { played: 31, win: 18, draw: 9,  lose: 4,  goals: { for: 60, against: 30 } }, goalsDiff: 30,  points: 63, form: 'DWWWW' },
+      { rank: 2,  team: { id: 1002, name: 'Ferencvárosi TC',         logo: '' }, all: { played: 31, win: 19, draw: 5,  lose: 7,  goals: { for: 59, against: 31 } }, goalsDiff: 28,  points: 62, form: 'WLWWW' },
+      { rank: 3,  team: { id: 1003, name: 'Debreceni VSC',           logo: '' }, all: { played: 31, win: 13, draw: 11, lose: 7,  goals: { for: 47, against: 35 } }, goalsDiff: 12,  points: 50, form: 'DWDLD' },
+      { rank: 4,  team: { id: 1004, name: 'Zalaegerszegi TE FC',     logo: '' }, all: { played: 31, win: 13, draw: 9,  lose: 9,  goals: { for: 48, against: 37 } }, goalsDiff: 11,  points: 48, form: 'LWLWW' },
+      { rank: 5,  team: { id: 1005, name: 'Paksi FC',                logo: '' }, all: { played: 31, win: 13, draw: 8,  lose: 10, goals: { for: 55, against: 43 } }, goalsDiff: 12,  points: 47, form: 'LWLWW' },
+      { rank: 6,  team: { id: 1006, name: 'Puskás Akadémia FC',      logo: '' }, all: { played: 31, win: 12, draw: 6,  lose: 13, goals: { for: 38, against: 40 } }, goalsDiff: -2,  points: 42, form: 'WLLLW' },
+      { rank: 7,  team: { id: 1007, name: 'Újpest FC',               logo: '' }, all: { played: 31, win: 11, draw: 7,  lose: 13, goals: { for: 47, against: 50 } }, goalsDiff: -3,  points: 40, form: 'LWWDL' },
+      { rank: 8,  team: { id: 1008, name: 'Kisvárda FC',             logo: '' }, all: { played: 31, win: 11, draw: 7,  lose: 13, goals: { for: 35, against: 46 } }, goalsDiff: -11, points: 40, form: 'LLDLD' },
+      { rank: 9,  team: { id: 1009, name: 'Nyíregyháza Spartacus',   logo: '' }, all: { played: 31, win: 10, draw: 8,  lose: 13, goals: { for: 44, against: 54 } }, goalsDiff: -10, points: 38, form: 'WLWLW' },
+      { rank: 10, team: { id: 1010, name: 'MTK Budapest FC',         logo: '' }, all: { played: 31, win: 9,  draw: 9,  lose: 13, goals: { for: 52, against: 59 } }, goalsDiff: -7,  points: 36, form: 'DWWDL' },
+      { rank: 11, team: { id: 1011, name: 'Diósgyőri VTK',          logo: '' }, all: { played: 31, win: 6,  draw: 10, lose: 15, goals: { for: 38, against: 58 } }, goalsDiff: -20, points: 28, form: 'WLLLL' },
+      { rank: 12, team: { id: 1012, name: 'FC Kazincbarcika',        logo: '' }, all: { played: 31, win: 5,  draw: 3,  lose: 23, goals: { for: 27, against: 67 } }, goalsDiff: -40, points: 18, form: 'DLLLL' },
+    ],
+  },
+  {
+    leagueSlug: 'nb2', leagueName: 'Nemzeti Bajnokság II', leagueShort: 'NB II', season: '2024/25',
+    standings: [
+      { rank: 1,  team: { id: 2001, name: 'Vasas SC',               logo: '' }, all: { played: 27, win: 18, draw: 4,  lose: 5,  goals: { for: 53, against: 20 } }, goalsDiff: 33,  points: 58, form: 'WLWWW' },
+      { rank: 2,  team: { id: 2002, name: 'Budapest Honvéd FC',     logo: '' }, all: { played: 26, win: 17, draw: 3,  lose: 6,  goals: { for: 45, against: 21 } }, goalsDiff: 24,  points: 54, form: 'WLWWW' },
+      { rank: 3,  team: { id: 2003, name: 'Kecskeméti TE',          logo: '' }, all: { played: 27, win: 15, draw: 3,  lose: 9,  goals: { for: 46, against: 33 } }, goalsDiff: 13,  points: 48, form: 'WWWWL' },
+      { rank: 4,  team: { id: 2004, name: 'Mezőkövesd-Zsóry SE',    logo: '' }, all: { played: 27, win: 12, draw: 7,  lose: 8,  goals: { for: 35, against: 31 } }, goalsDiff: 4,   points: 43, form: 'DLWLW' },
+      { rank: 5,  team: { id: 2005, name: 'Csákvári TK',            logo: '' }, all: { played: 27, win: 10, draw: 10, lose: 7,  goals: { for: 41, against: 36 } }, goalsDiff: 5,   points: 40, form: 'LWLDW' },
+      { rank: 6,  team: { id: 2006, name: 'Videoton FC',            logo: '' }, all: { played: 27, win: 10, draw: 9,  lose: 8,  goals: { for: 35, against: 27 } }, goalsDiff: 8,   points: 39, form: 'LWDWD' },
+      { rank: 7,  team: { id: 2007, name: 'Kozármisleny SE',        logo: '' }, all: { played: 27, win: 10, draw: 9,  lose: 8,  goals: { for: 32, against: 37 } }, goalsDiff: -5,  points: 39, form: 'WDWWD' },
+      { rank: 8,  team: { id: 2008, name: 'Karcagi SE',             logo: '' }, all: { played: 27, win: 9,  draw: 8,  lose: 10, goals: { for: 28, against: 37 } }, goalsDiff: -9,  points: 35, form: 'DWLLL' },
+      { rank: 9,  team: { id: 2009, name: 'BVSC-Zugló',             logo: '' }, all: { played: 27, win: 10, draw: 4,  lose: 13, goals: { for: 30, against: 28 } }, goalsDiff: 2,   points: 34, form: 'LWDLL' },
+      { rank: 10, team: { id: 2010, name: 'Ajka FC',                logo: '' }, all: { played: 27, win: 10, draw: 3,  lose: 14, goals: { for: 21, against: 32 } }, goalsDiff: -11, points: 33, form: 'DDLWW' },
+      { rank: 11, team: { id: 2011, name: 'Tiszakecske',            logo: '' }, all: { played: 27, win: 8,  draw: 9,  lose: 10, goals: { for: 33, against: 42 } }, goalsDiff: -9,  points: 33, form: 'LWWWD' },
+      { rank: 12, team: { id: 2012, name: 'Szeged FC',              logo: '' }, all: { played: 27, win: 8,  draw: 8,  lose: 11, goals: { for: 26, against: 33 } }, goalsDiff: -7,  points: 32, form: 'LLDLW' },
+      { rank: 13, team: { id: 2013, name: 'Soroksár SC',            logo: '' }, all: { played: 26, win: 6,  draw: 8,  lose: 12, goals: { for: 35, against: 43 } }, goalsDiff: -8,  points: 26, form: 'WDWLL' },
+      { rank: 14, team: { id: 2014, name: 'Budafoki MTE',           logo: '' }, all: { played: 27, win: 6,  draw: 7,  lose: 14, goals: { for: 27, against: 44 } }, goalsDiff: -17, points: 25, form: 'WLLLD' },
+      { rank: 15, team: { id: 2015, name: 'Békéscsaba 1912 Előre',  logo: '' }, all: { played: 27, win: 5,  draw: 10, lose: 12, goals: { for: 25, against: 38 } }, goalsDiff: -13, points: 25, form: 'DDDLD' },
+      { rank: 16, team: { id: 2016, name: 'Szentlőrinc SE',         logo: '' }, all: { played: 27, win: 4,  draw: 12, lose: 11, goals: { for: 30, against: 40 } }, goalsDiff: -10, points: 24, form: 'WDLLL' },
+    ],
+  },
+  {
+    leagueSlug: 'u19', leagueName: 'U19 Nemzeti Bajnokság', leagueShort: 'U19', season: '2024/25',
+    standings: [
+      { rank: 1,  team: { id: 3001, name: 'Budapest Honvéd U19',                  logo: '' }, all: { played: 17, win: 14, draw: 1, lose: 2,  goals: { for: 53, against: 8  } }, goalsDiff: 45,  points: 43, form: 'WWWWW' },
+      { rank: 2,  team: { id: 3002, name: 'MTK Budapest U19',                     logo: '' }, all: { played: 16, win: 14, draw: 0, lose: 2,  goals: { for: 51, against: 20 } }, goalsDiff: 31,  points: 42, form: 'WWWWW' },
+      { rank: 3,  team: { id: 3003, name: 'Debreceni VSC U19',                    logo: '' }, all: { played: 15, win: 8,  draw: 0, lose: 7,  goals: { for: 35, against: 23 } }, goalsDiff: 12,  points: 24, form: 'WLWLW' },
+      { rank: 4,  team: { id: 3004, name: 'Illés Akadémia Haladás U19',          logo: '' }, all: { played: 17, win: 6,  draw: 6, lose: 5,  goals: { for: 24, against: 27 } }, goalsDiff: -3,  points: 24, form: 'LWWDL' },
+      { rank: 5,  team: { id: 3005, name: 'Ferencvárosi TC U19',                 logo: '' }, all: { played: 16, win: 7,  draw: 2, lose: 7,  goals: { for: 31, against: 34 } }, goalsDiff: -3,  points: 23, form: 'DWLWW' },
+      { rank: 6,  team: { id: 3006, name: 'Diósgyőri VTK U19',                  logo: '' }, all: { played: 15, win: 6,  draw: 4, lose: 5,  goals: { for: 24, against: 24 } }, goalsDiff: 0,   points: 22, form: 'DWWLW' },
+      { rank: 7,  team: { id: 3007, name: 'Puskás Akadémia U19',                 logo: '' }, all: { played: 16, win: 7,  draw: 1, lose: 8,  goals: { for: 31, against: 35 } }, goalsDiff: -4,  points: 22, form: 'LWLLL' },
+      { rank: 8,  team: { id: 3008, name: 'Győri ETO U19',                       logo: '' }, all: { played: 16, win: 5,  draw: 4, lose: 7,  goals: { for: 29, against: 26 } }, goalsDiff: 3,   points: 19, form: 'DWLWL' },
+      { rank: 9,  team: { id: 3009, name: 'Kubala Akadémia U19',                 logo: '' }, all: { played: 16, win: 4,  draw: 4, lose: 8,  goals: { for: 18, against: 28 } }, goalsDiff: -10, points: 16, form: 'WLDLL' },
+      { rank: 10, team: { id: 3010, name: 'Fehérvár FC U19',                     logo: '' }, all: { played: 16, win: 4,  draw: 3, lose: 9,  goals: { for: 15, against: 41 } }, goalsDiff: -26, points: 15, form: 'LLLLL' },
+      { rank: 11, team: { id: 3011, name: 'Szeged-Csanád Grosics Akadémia U19', logo: '' }, all: { played: 16, win: 3,  draw: 4, lose: 9,  goals: { for: 17, against: 41 } }, goalsDiff: -24, points: 13, form: 'LLDWD' },
+      { rank: 12, team: { id: 3012, name: 'Újpest FC U19',                       logo: '' }, all: { played: 16, win: 2,  draw: 3, lose: 11, goals: { for: 17, against: 38 } }, goalsDiff: -21, points: 9,  form: 'LLLLL' },
+    ],
+  },
+];
+await Standings.insertMany(standingsData);
+console.log('✅ Classifiche NB I, NB II, U19 inserite nel DB');
 
 console.log('\n🎉 Seed completato con successo!');
 console.log('   Login admin: admin@magyardream.hu / admin123');
