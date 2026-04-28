@@ -7,8 +7,6 @@ import ErrorMessage from '../components/common/ErrorMessage.jsx';
 const LEAGUES = [
   { slug: 'nb1', name: 'NB I' },
   { slug: 'nb2', name: 'NB II' },
-  { slug: 'nb3', name: 'NB III' },
-  { slug: 'magyar-kupa', name: 'Magyar Kupa' },
 ];
 
 function Medal({ position }) {

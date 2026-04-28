@@ -1,5 +1,5 @@
-import { useState, useMemo } from 'react';
-import { format, addDays, startOfDay } from 'date-fns';
+import { useState } from 'react';
+import { format } from 'date-fns';
 import { it, enUS, hu } from 'date-fns/locale';
 import { useApi } from '../hooks/useApi.js';
 import { useLanguage } from '../context/LanguageContext.jsx';
@@ -12,19 +12,13 @@ const DATE_LOCALES = { it, en: enUS, hu };
 export default function Calendar() {
   const { t, lang } = useLanguage();
   const [league, setLeague] = useState('');
+  const [matchday, setMatchday] = useState('');
   const dateLocale = DATE_LOCALES[lang] || it;
-
-  const { fromISO, toISO } = useMemo(() => {
-    const today = startOfDay(new Date());
-    return { fromISO: today.toISOString(), toISO: addDays(today, 30).toISOString() };
-  }, []);
 
   const { data: leagues } = useApi('/leagues');
   const { data: matches, loading, error } = useApi('/matches', {
-    status: 'scheduled',
-    from: fromISO,
-    to: toISO,
     ...(league && { league }),
+    ...(matchday && { matchday }),
     limit: 100,
   });
 
@@ -41,10 +35,16 @@ export default function Calendar() {
         <span style={{ color: '#CE2939' }}>{t.calendar.title.split(' ').slice(1).join(' ')}</span>
       </h1>
 
-      <div className="mb-6">
+      <div className="flex flex-wrap gap-3 mb-6">
         <select value={league} onChange={(e) => setLeague(e.target.value)} className="input max-w-xs">
           <option value="">{t.calendar.allLeagues}</option>
           {leagues?.map((l) => <option key={l._id} value={l._id}>{l.name}</option>)}
+        </select>
+        <select value={matchday} onChange={(e) => setMatchday(e.target.value)} className="input max-w-[160px]">
+          <option value="">Tutte le giornate</option>
+          {Array.from({ length: 34 }, (_, i) => i + 1).map((g) => (
+            <option key={g} value={g}>Giornata {g}</option>
+          ))}
         </select>
       </div>
 
