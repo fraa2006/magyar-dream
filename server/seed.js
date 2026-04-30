@@ -33,15 +33,14 @@ await User.create({
 console.log('✅ Admin: admin@magyardream.hu / admin123');
 
 const leaguesData = [
-  { name: 'Nemzeti Bajnokság I',   shortName: 'NB I',  slug: 'nb1',         tier: 1 },
-  { name: 'Nemzeti Bajnokság II',  shortName: 'NB II', slug: 'nb2',         tier: 2 },
-  { name: 'Magyar Kupa',           shortName: 'MK',    slug: 'magyar-kupa', tier: 1 },
-  { name: 'U19 Nemzeti Bajnokság', shortName: 'U19',   slug: 'u19',         tier: 4 },
+  { name: 'Nemzeti Bajnokság I',   shortName: 'NB I',  slug: 'nb1', tier: 1 },
+  { name: 'Nemzeti Bajnokság II',  shortName: 'NB II', slug: 'nb2', tier: 2 },
+  { name: 'U19 Nemzeti Bajnokság', shortName: 'U19',   slug: 'u19', tier: 4 },
 ];
 const leagues = await League.insertMany(leaguesData);
 const nb1 = leagues[0];
 const nb2 = leagues[1];
-console.log(`✅ ${leagues.length} leghe create`);
+console.log(`✅ ${leagues.length} leghe create (NB I, NB II, U19)`);
 
 const season = await Season.create({
   name: '2024-25',
